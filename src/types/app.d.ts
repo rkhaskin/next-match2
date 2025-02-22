@@ -3,15 +3,16 @@ import { DateTime } from "next-auth/providers/kakao";
 type Member = {
   id: number;
   user_id?: number;
-  gender: string;
+  gender?: string;
   dob: Date;
-  created_on: DateTime;
+  created_on?: DateTime;
   updated_on?: DateTime;
   description: string;
   city: string;
   country: string;
   name: string;
   image?: string;
+  isLiked?: string;
 };
 
 type MemberPhotos = {
@@ -22,7 +23,13 @@ type MemberPhotos = {
 };
 
 type MemberLikes = {
-  id: number;
+  id?: number;
   target_member_id: number;
-  source_member_id: number;
+  user_id?: number;
+};
+
+// they like each other, order here does not matter
+type MutualMemberLikes = {
+  member_id_1: number;
+  member_id_2: number;
 };

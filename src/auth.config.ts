@@ -14,6 +14,7 @@ type UserCleaned = {
   email_verified: Date | null;
   image: string | null;
   passwordHash: string;
+  memberId: number;
 };
 
 export default {
@@ -22,8 +23,6 @@ export default {
     Credentials({
       name: "credentials",
       async authorize(creds) {
-        console.log("eeeeeeeeeee");
-
         const validated = loginSchema.safeParse(creds);
         if (validated.success) {
           const { password, email } = validated.data;
@@ -40,6 +39,7 @@ export default {
             email_verified: user.email_verified,
             image: user.image,
             passwordHash: user.passwordHash,
+            memberId: 0,
           };
           return userCleaned;
         }
